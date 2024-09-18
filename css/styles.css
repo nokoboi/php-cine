@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(220, 255, 188);
+}
+
+h1{
+    text-align: center;
+    margin:1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.listado-peliculas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pelicula {
+    margin: 1rem;
+    padding: 1rem;
+    width: 230px;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.62);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.62);
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.62);
+}
+
+.precio{
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.botonMas{
+    background-color: rgb(148, 255, 47);
+    color: black;
+    border:none;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin:0.5rem auto;
+    display: block;
+    text-align: center;
+}
+
+.botonMas:hover{
+    background-color: rgb(103, 212, 0);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Estilo para los encabezados de la tabla */
+th {
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 12px;
+}
+
+/* Estilo para las celdas de la tabla */
+td {
+    padding: 12px;
+    border: 1px solid #ddd; /* Borde de las celdas */
+}
+
+/* Estilo para filas alternas */
+tr:nth-child(even) {
+    background-color: rgb(200, 255, 148); /* Color de fondo para filas pares */
+}
+
+/* Estilo para el borde de la tabla */
+table, th, td {
+    border: 1px solid #ddd; /* Borde de la tabla */
+}
+
+/* Estilo para el texto */
+td {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+}
+.emoji{
+    text-align: center;
+}
+
+.emoji>button{
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.formulario-creacion{
+    width: 90%;
+    max-width: 600px;
+    margin:0 auto;
+    padding:1rem;
+    background-color: #b1f0b3;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.62);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.62);
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.62);
+}
+
+.campo-form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.campo-form input{
+    margin: 0.2rem;
+    padding: 0.2rem;
+    width: 60%;
+}
+
+.botonForm{
+    width: 100%;
+    margin:0.5rem 0 0 0;
+    padding:0.5rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    border:none;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.botonForm:hover{
+    background-color: rgb(70, 145, 0); 
+}
