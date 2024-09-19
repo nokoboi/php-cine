@@ -33,10 +33,15 @@ function crearPelicula($titulo, $precio, $director){
    return $resultado;
 }
 
-function modificarPelicula(){
+function modificarPelicula($id){
 
 }
 
-function eliminarPelicula(){
+function eliminarPelicula($id){
+    require 'database.php';
+    $sql = "delete from pelicula where id=$id;";
 
+    $resultado = mysqli_query($conexion, $sql);
+
+    return $resultado;
 }

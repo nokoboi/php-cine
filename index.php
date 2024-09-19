@@ -2,7 +2,7 @@
     require 'includes/funcionesPeliculas.php';
 
     $consulta = obtener_peliculas();
-    $insertar = crearPelicula();
+    //$insertar = crearPelicula();
 
 ?>
 

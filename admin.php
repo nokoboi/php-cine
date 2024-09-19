@@ -24,7 +24,7 @@ $consulta = obtener_peliculas();
    
         <main>
             <h1>Administrar peliculas</h1>
-            <button>REGISTRAR NUEVA PELICULA</button>
+            <a href="crearPelicula.php" class="botonForm">REGISTRAR NUEVA PELICULA</a>
             <table>
                 <thead>
                     <th>ID</th>
@@ -34,12 +34,12 @@ $consulta = obtener_peliculas();
                     <th>ELIMINAR</th>
                 </thead>
                 <?php while ($datos = mysqli_fetch_assoc($consulta)): ?>
-                    <tr>
+                    <tr id="fila-<?php echo $datos['id'];?>">
                         <td><?php echo htmlspecialchars($datos['id']); ?></td>
                         <td><?php echo htmlspecialchars($datos['titulo']); ?></td>
                         <td class="precio"><?php echo htmlspecialchars($datos['precio']); ?>€</td>
-                        <td class="emoji"><button>✏️</button></td>
-                        <td class="emoji"><button>✖️</button></td>
+                        <td class="emoji"><button class="btn-modificar" data-id=<?php echo $datos['id']; ?>>✏️</button></td>
+                        <td class="emoji"><button class="btn-eliminar" data-nombre="<?php echo $datos['titulo']; ?>" data-id=<?php echo $datos['id']; ?>>✖️</button></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -51,6 +51,8 @@ $consulta = obtener_peliculas();
         </footer>
 
     </div>
+
+    <script src="js/admin.js"></script>
 </body>
 
 </html>

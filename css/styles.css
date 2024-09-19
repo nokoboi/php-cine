@@ -125,7 +125,7 @@ td {
 }
 
 .botonForm{
-    width: 100%;
+    width: 40%;
     margin:0.5rem 0 0 0;
     padding:0.5rem;
     font-size: 1rem;
@@ -133,8 +133,24 @@ td {
     border:none;
     border-radius: 0.5rem;
     color: white;
+    text-decoration: none;
+    text-align: center;
 }
 
 .botonForm:hover{
     background-color: rgb(70, 145, 0); 
+}
+
+select{
+    width: 99%;
+    background-color: #d8ffda;
+    font-size: 1rem;
+}
+
+.ultimosDatos{
+    width: 60%;
+    margin:auto;
+    padding:1rem;
+    margin-top: 3rem;
+
 }
