@@ -1,8 +1,21 @@
 <?php
 require 'includes/funcionesDirectores.php';
+require 'includes/funcionesPeliculas.php';
 session_start();
-// comprobar de donde viene la llamada
 $directores = obtener_directores();
+
+$pelicula = '';
+if (isset($_SESSION['metodo']) && $_SESSION['metodo'] === 'modificar') {
+    // Modificar pelicula
+    $id = $_SESSION['idPelicula'];
+    $respuesta = obtenerPeliculaPorID($id);
+    $pelicula = mysqli_fetch_assoc($respuesta);
+
+    unset($_SESSION['metodo']);
+    unset($_SESSION['idPelicula']);
+
+    // var_dump($pelicula);
+}
 
 ?>
 
@@ -18,23 +31,29 @@ $directores = obtener_directores();
 
 <body>
     <div class="container">
-        <h1>REGISTRAR NUEVA PELÍCULA</h1>
+        <?php echo ($pelicula != '') ? '<h1>MODIFICAR PELICULA</h1>' : '<h1>REGISTRAR NUEVA PELÍCULA</h1>' ?>
         <form class="formulario-creacion" action="includes/controlPeliculas.php" method="POST">
-            <input type="hidden" name="metodo" value="crear">
+            <input type="hidden" name="metodo" value="<?php echo ($pelicula != '') ? 'modificacion' : 'crear' ?>">
+            <input type="hidden" name="id" value="<?php echo ($pelicula != '') ? $pelicula['id'] : '' ?>">
             <div class="campo-form">
                 <label for="titulo">Titulo</label>
-                <input type="text" name="titulo" required>
+                <input type="text" name="titulo" value="<?php echo ($pelicula != '') ? $pelicula['titulo'] : '' ?>"
+                    required>
             </div>
             <div class="campo-form">
                 <label for="precio">Precio</label>
-                <input type="number" name="precio" required>
+                <input type="number" name="precio" value="<?php echo ($pelicula != '') ? $pelicula['precio'] : '' ?>"
+                    required>
             </div>
             <select name="directores">
                 <option value="">Seleccione un director</option>
                 <?php
-                while ($director = mysqli_fetch_assoc($directores)) { ?>
-                    <option value="<?php echo $director['id'] ?>"><?php echo $director['nombre'] ?></option>
-                <?php }
+                $currectDirector = ($pelicula != '') ? $pelicula['id_director'] : '';
+                while ($director = mysqli_fetch_assoc($directores)) {
+                    $selected = ($currectDirector == $director['id']) ? 'selected' : '';
+                    echo "<option $selected value='$director[id]'> $director[nombre] $director[apellido]</option>";
+                    
+                }
                 ?>
             </select>
 

@@ -40,31 +40,32 @@ botonesEliminar.forEach(boton => {
     })
 });
 
-botonesModificar.forEach(boton=>{
-    boton.addEventListener('click', event=>{
+botonesModificar.forEach(boton => {
+    boton.addEventListener('click', event => {
         let botonSeleccionado = event.currentTarget;
         let id = botonSeleccionado.getAttribute('data-id');
         console.log(id)
 
-        fetch('includes/controlPeliculas.php', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/x-www-form-urlencoded',
-            },
-            body: 'id=' + id + '&metodo=modificar'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Registro modificado');
+        // Crear un formulario dinámico
+        const formulario = document.createElement('form');
+        formulario.method = 'POST';
+        formulario.action = 'includes/controlPeliculas.php';
 
-                } else {
-                    alert('Error al modificar: ' + data.message)
-                }
-            })
-            .catch(error => {
-                console.error('Error: ', error);
-                alert('Ocurrió un error al modificar')
-            });
+        const campoId = document.createElement('input');
+        campoId.type = 'hidden';
+        campoId.name = 'idPelicula';
+        campoId.value = id;
+
+        formulario.appendChild(campoId);
+
+        const campoMetodo = document.createElement('input');
+        campoMetodo.type = 'hidden';
+        campoMetodo.name = 'metodo';
+        campoMetodo.value = 'modificar';
+
+        formulario.appendChild(campoMetodo);
+
+        document.body.appendChild(formulario);
+        formulario.submit();
     })
 })

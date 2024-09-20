@@ -46,8 +46,33 @@ if ($metodo === 'delete') {
 }
 
 if ($metodo === 'modificar') {
+    $_SESSION['idPelicula'] = $_POST['idPelicula'];
+    $_SESSION['metodo'] = $_POST['metodo'];
+
+    header('Location: ../crearPelicula.php');
+}
+
+if($metodo === 'modificacion'){
     $id = $_POST['id'];
-    // Llamar a crearPelicula.php
-    // Pasarle el id de la pelicula a modificar
-    header("Location: ../crearPelicula.php?id=$id");
+    $titulo = $_POST['titulo'];
+    $precio = $_POST['precio'];
+    $director = $_POST['directores'];
+
+    $respuesta = modificarPelicula($id, $titulo, $precio, $director);
+
+    if ($respuesta) {
+        $_SESSION['mensaje'] = "Los datos se modificaron correctamente";
+        $_SESSION['datos_insertados'] = [
+            'titulo' => $titulo,
+            'precio' => $precio,
+            'director' => $director
+        ];
+
+    } else {
+        $_SESSION['mensaje'] = "Error: " . mysqli_connect_error();
+    }
+
+    header("Location: ../crearPelicula.php");
+    exit(); 
+
 }

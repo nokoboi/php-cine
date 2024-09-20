@@ -1,47 +1,42 @@
 <?php
+// Función para ejecutar consultas y devolver resultados
+function ejecutarConsulta($sql)
+{
+    require 'database.php';
+    return mysqli_query($conexion, $sql);
+}
 
+// Función para obtener todas las películas
 function obtener_peliculas()
 {
-    // Importamos la conexión
-    require 'database.php';
-
-    // Preparamos la consulta
-    $sql = "select * from pelicula;";
-
-    // Realizamos la consulta
-    $resultado = mysqli_query($conexion, $sql);
-
-    return $resultado;
-    // Obtener los datos de la consulta
-    // $datos = mysqli_fetch_assoc($resultado);
-
-    // echo '<pre>';
-    // var_dump($datos);
-    // echo '</pre>';
+    $sql = "SELECT * FROM pelicula;";
+    return ejecutarConsulta($sql);
 }
 
-function obtenerPeliculaPorID(){
-
+// Función para obtener una película por ID
+function obtenerPeliculaPorID($id)
+{
+    $sql = "SELECT * FROM pelicula WHERE id=$id;";
+    return ejecutarConsulta($sql);
 }
 
-function crearPelicula($titulo, $precio, $director){
-   require 'database.php';
-   $sql = "insert into pelicula(titulo,precio,id_director) values('$titulo',$precio,$director);";
-
-   // Realizar la consulta
-   $resultado = mysqli_query($conexion, $sql);
-   return $resultado;
+// Función para crear una nueva película
+function crearPelicula($titulo, $precio, $director)
+{
+    $sql = "INSERT INTO pelicula(titulo,precio,id_director) VALUES('$titulo', $precio, $director);";
+    return ejecutarConsulta($sql);
 }
 
-function modificarPelicula($id){
-
+// Función para modificar una película existente
+function modificarPelicula($id, $titulo, $precio, $director)
+{
+    $sql = "UPDATE pelicula SET titulo='$titulo', precio=$precio, id_director=$director WHERE id=$id;";
+    return ejecutarConsulta($sql);
 }
 
-function eliminarPelicula($id){
-    require 'database.php';
-    $sql = "delete from pelicula where id=$id;";
-
-    $resultado = mysqli_query($conexion, $sql);
-
-    return $resultado;
+// Función para eliminar una película
+function eliminarPelicula($id)
+{
+    $sql = "DELETE FROM pelicula WHERE id=$id;";
+    return ejecutarConsulta($sql);
 }
